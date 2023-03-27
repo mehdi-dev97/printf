@@ -1,3 +1,5 @@
+#include <stdarg.h>
+#include <stdlib.h>
 #include "main.h"
 
 /**
@@ -7,15 +9,35 @@
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int len;
+	va_list ptr;
+	int i = 0, len = 0;
 
 	if (format == NULL)
-	{
 		return (-1);
+	va_start(ptr, format);
+	while (format[i] != '\0')
+	{
+		if (format[i] != '%')
+		{
+			_putchar(format[i]), len++, i++;
+			continue;
+		}
+		if (format[i] == '%')
+		{
+			i++;
+			if (format[i] != '\0')
+			{
+				len += print_char(format[i], ptr);
+			}
+			else
+			{
+				va_end(ptr);
+				return (-1);
+			}
+
+		}
+		i++;
 	}
-	va_start(args, format);
-	len = print_format(format, args);
-	va_end(args);
+	va_end(ptr);
 	return (len);
 }
