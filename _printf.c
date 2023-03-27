@@ -27,7 +27,7 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] != '\0')
 			{
-				len += print_char(format[i], ptr);
+				len += print_format(format[i], ptr);
 			}
 			else
 			{
