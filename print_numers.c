@@ -26,5 +26,5 @@ int print_numers(int n)
 	{
 		write(1, &buffer[i], 1);
 	}
-	return (len);
+	return (len + 1);
 }
